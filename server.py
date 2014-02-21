@@ -20,15 +20,14 @@ def start_server():
     address = ('127.0.0.1', 50000)
     server_socket.bind(address)     #give the server ip/port frm above
     server_socket.listen(5)         #'backlog' of 5
+    conn, addr = server_socket.accept()
 
-    while True:
-        response = 'you said: '
-        conn, addr = server_socket.accept()
-        message_part = connection.recv(4096)
-        if len(message_part) < 4096:    #if you got the whole msg...
-            socket.close()
-        response += message_part        #add msg to my response tag
-        connection.sendall(response)    #and send it out.
+    listen = True
+    while listen:
+        message = conn.recv(4096)
+        print message
+        conn.sendall(message)          #and send it out.
+        listen = False
 
     conn.shutdown(socket.SHUT_WR)
     conn.close()

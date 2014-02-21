@@ -5,6 +5,9 @@ The two files are meant to complement each other. The server listens to the clie
 In addition to the Python documents, the following sources were consulted in the creation of these scripts:
 
 http://www.devshed.com/c/a/Python/Sockets-in-Python-Into-the-World-of-Python-Network-Programming/2/
+
 http://ilab.cs.byu.edu/python/socket/echoserver.html
+
 http://ilab.cs.byu.edu/python/socket/echoclient.html
+
 http://cewing.github.io/training.codefellows/assignments/day06/socket_exercise.html
