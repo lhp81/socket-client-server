@@ -12,22 +12,26 @@ http://cewing.github.io/training.codefellows/assignments/day06/
 
 import socket
 
+
 def start_server():
     server_socket = socket.socket(  # create a server...
         socket.AF_INET,             # type of address
-        socket.SOCK_STREAM,         # asdf
+        socket.SOCK_STREAM,         # type of socket
         socket.IPPROTO_TCP)         # make it a tcp connection
-    address = ('127.0.0.1', 50000)
-    server_socket.bind(address)     #give the server ip/port frm above
-    server_socket.listen(5)         #'backlog' of 5
-    conn, addr = server_socket.accept()
+    address = ('127.0.0.1', 50000)  # the ip and port
+    server_socket.bind(address)     # give the server ip/port frm above
+    server_socket.listen(5)         # 'backlog' of 5
+    conn, addr = server_socket.accept()  # accept connections.
 
-    listen = True
+    listen = True                   # start a listening loop.
     while listen:
-        message = conn.recv(4096)
-        print message
-        conn.sendall(message)          #and send it out.
-        listen = False
+        message = ''
+        message += conn.recv(4096)
+        if len(message) < 4096:     # this is so it can accept messages that
+            listen = False          # are longer than the buffer.
+
+    print message                   # so it shows us the message and then sends
+    conn.sendall(message)           # the same message back to the client.
 
     conn.shutdown(socket.SHUT_WR)
     conn.close()
