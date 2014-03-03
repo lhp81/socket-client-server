@@ -6,7 +6,8 @@ import socket
 import sys
 
 
-def run_client(message):
+def run_client():
+    message = raw_input("What message would you like to send? > ")
     client_socket = socket.socket(
         socket.AF_INET,
         socket.SOCK_STREAM,
@@ -19,6 +20,4 @@ def run_client(message):
 
 
 if __name__ == '__main__':
-    message = sys.argv[1]
-    print 'Sending message: %s' % message
     run_client()
