@@ -6,8 +6,7 @@ import socket
 import sys
 
 
-def run_client():
-    message = raw_input("What message would you like to send? > ")
+def run_client(message):
     client_socket = socket.socket(
         socket.AF_INET,
         socket.SOCK_STREAM,
@@ -15,9 +14,14 @@ def run_client():
     client_socket.connect(('127.0.0.1', 50000))
     client_socket.sendall(message)
     msg_back = client_socket.recv(4096)
-    print 'Response received: %s' % msg_back
+    return msg_back
     client_socket.shutdown(socket.SHUT_WR)
 
 
 if __name__ == '__main__':
-    run_client()
+    try:
+        msg = sys.argv[1]
+    except IndexError:
+        msg = raw_input("What message would you like to send? > ")
+
+    print run_client(msg)

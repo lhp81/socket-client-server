@@ -1,9 +1,18 @@
-from lettuce import world
 from lettuce import step
-import server
-import socket
+from lettuce import world
+from client import run_client
 
-@step('a message (\d+)')
-def a_message(step, message):
-    world.message = message
-    
+
+@step('the string: (.)')
+def the_string(step, message):
+    world.cla = msg
+
+
+@step('when I send it with the echo_client')
+def call_echo_client(step):
+    world.client = run_client(world.cla)
+
+
+@step('Then I see: (.)')
+def compare(step, expected):
+    assert world.client == expected, world.client
