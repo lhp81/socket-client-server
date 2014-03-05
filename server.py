@@ -28,14 +28,11 @@ def start_server():
         message = ''
         message += conn.recv(4096)
         if len(message) < 4096:     # this is so it can accept messages that
-            listen = False          # are longer than the buffer.
+            listen = False                      # are longer than the buffer.
 
     print message                   # so it shows us the message and then sends
     conn.sendall(message)           # the same message back to the client.
 
-    conn.shutdown(socket.SHUT_WR)
-    conn.close()
-    server_socket.close()
 
 
 if __name__ == '__main__':

@@ -3,7 +3,7 @@ Feature: An echo server
 
     Scenario Outline: Echo server that receives strings
         Given the string <input>
-        When I send with echo_client
+        When I send with echo client
         Then I see <output>
 
     Examples:
