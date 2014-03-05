@@ -1,11 +1,9 @@
 Feature: An echo server
-    Implement an echo server that receives and echos back messages. This sort
-    of thing would be very dangerous for Narcissus, so if you see him, don't
-    let him anywher near this.
+    Implement an echo server.
 
     Scenario Outline: Echo server that receives strings
         Given the string <input>
-        When I send it with the echo_client
+        When I send with echo_client
         Then I see <output>
 
     Examples:

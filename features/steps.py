@@ -3,16 +3,17 @@ from lettuce import world
 from client import run_client
 
 
-@step('the string: (.)')
+@step('the string: (.+$)')
 def the_string(step, message):
-    world.cla = msg
+    world.message = message
 
 
-@step('when I send it with the echo_client')
+@step('I send with echo_client')
 def call_echo_client(step):
-    world.client = run_client(world.cla)
+    world.es = run_client(world.message)
 
 
-@step('Then I see: (.)')
+@step('I see (.+$)')
 def compare(step, expected):
-    assert world.client == expected, world.client
+    expected == world.message
+    assert world.es == expected, world.es
